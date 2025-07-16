@@ -17,11 +17,11 @@ export const userKeys = {
   detail: (id: string) => [...userKeys.details(), id] as const,
 };
 
-// Hook để lấy danh sách users
+// Hook to get users list
 export const useUsers = (params?: PaginationParams) => {
   const queryClient = useQueryClient();
 
-  // Query: Lấy danh sách users
+  // Query: Get users list
   const {
     data: users,
     isLoading: isLoadingUsers,
@@ -33,10 +33,10 @@ export const useUsers = (params?: PaginationParams) => {
       const response = await userService.getUsers(params);
       return response.data;
     },
-    staleTime: 2 * 60 * 1000, // 2 phút
+    staleTime: 2 * 60 * 1000, // 2 minutes
   });
 
-  // Mutation: Tạo user mới
+  // Mutation: Create new user
   const createUserMutation = useMutation({
     mutationFn: (userData: CreateUserRequest) =>
       userService.createUser(userData),
@@ -46,7 +46,7 @@ export const useUsers = (params?: PaginationParams) => {
     },
   });
 
-  // Mutation: Cập nhật user
+  // Mutation: Update user
   const updateUserMutation = useMutation({
     mutationFn: ({
       id,
@@ -56,13 +56,13 @@ export const useUsers = (params?: PaginationParams) => {
       userData: UpdateUserRequest;
     }) => userService.updateUser(id, userData),
     onSuccess: (_, { id }) => {
-      // Invalidate specific user và users list
+      // Invalidate specific user and users list
       queryClient.invalidateQueries({ queryKey: userKeys.detail(id) });
       queryClient.invalidateQueries({ queryKey: userKeys.lists() });
     },
   });
 
-  // Mutation: Xóa user
+  // Mutation: Delete user
   const deleteUserMutation = useMutation({
     mutationFn: (id: string) => userService.deleteUser(id),
     onSuccess: () => {
@@ -118,7 +118,7 @@ export const useUsers = (params?: PaginationParams) => {
   };
 };
 
-// Hook riêng để lấy thông tin user theo ID
+// Separate hook to get user by ID
 export const useUserById = (id: string) => {
   return useQuery({
     queryKey: userKeys.detail(id),
@@ -127,6 +127,6 @@ export const useUserById = (id: string) => {
       return response.data;
     },
     enabled: !!id,
-    staleTime: 5 * 60 * 1000, // 5 phút
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };

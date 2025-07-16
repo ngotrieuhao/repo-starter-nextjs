@@ -8,24 +8,24 @@ import {
 
 // User service
 export const userService = {
-  // Lấy danh sách users
+  // Get users list
   getUsers: async (params?: PaginationParams): Promise<ApiResponse<User[]>> => {
     return api.get<User[]>('/users', params as Record<string, unknown>);
   },
 
-  // Lấy thông tin user theo ID
+  // Get user by ID
   getUserById: async (id: string): Promise<ApiResponse<User>> => {
     return api.get<User>(`/users/${id}`);
   },
 
-  // Tạo user mới
+  // Create new user
   createUser: async (
     userData: CreateUserRequest
   ): Promise<ApiResponse<User>> => {
     return api.post<User>('/users', userData);
   },
 
-  // Cập nhật user
+  // Update user
   updateUser: async (
     id: string,
     userData: UpdateUserRequest
@@ -33,7 +33,7 @@ export const userService = {
     return api.put<User>(`/users/${id}`, userData);
   },
 
-  // Xóa user
+  // Delete user
   deleteUser: async (id: string): Promise<ApiResponse<null>> => {
     return api.delete<null>(`/users/${id}`);
   },
@@ -51,7 +51,7 @@ export const userService = {
     );
   },
 
-  // Thay đổi password
+  // Change password
   changePassword: async (
     id: string,
     currentPassword: string,

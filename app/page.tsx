@@ -8,7 +8,7 @@ export default function Home() {
           Next.js + React Query + Axios
         </h1>
         <p className='text-muted-foreground mb-8'>
-          Setup hoàn chỉnh với authentication, API calls và state management
+          Complete setup with authentication, API calls and state management
         </p>
         <Button>Test Button</Button>
       </div>

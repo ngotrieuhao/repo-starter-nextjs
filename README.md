@@ -1,22 +1,22 @@
 # Setup Guide: Next.js + React Query + Axios
 
-## 📁 Cấu trúc thư mục đã tạo
+## 📁 Project Structure Created
 
 ```
 ├── lib/
-│   ├── axios.ts          # Cấu hình Axios với interceptors
+│   ├── axios.ts          # Axios configuration with interceptors
 │   ├── api.ts            # API helper functions
-│   ├── query-client.ts   # Cấu hình React Query
+│   ├── query-client.ts   # React Query configuration
 │   └── utils.ts          # Utility functions
 ├── services/
-│   ├── types.ts          # TypeScript types cho API
+│   ├── types.ts          # TypeScript types for API
 │   ├── auth.service.ts   # Authentication service
 │   ├── user.service.ts   # User management service
-│   └── index.ts          # Export tất cả services
+│   └── index.ts          # Export all services
 ├── hooks/
 │   ├── useAuth.ts        # Authentication hooks
 │   ├── useUsers.ts       # User management hooks
-│   └── index.ts          # Export tất cả hooks
+│   └── index.ts          # Export all hooks
 ├── components/
 │   ├── ui/
 │   │   └── button.tsx    # UI components
@@ -28,9 +28,9 @@
     └── page.tsx          # Main page
 ```
 
-## 🚀 Cách sử dụng
+## 🚀 How to Use
 
-### 1. API Calls với Axios
+### 1. API Calls with Axios
 
 ```typescript
 import { api } from '@lib/api';
@@ -84,11 +84,11 @@ await userService.createUser(userData);
 await userService.getUserById('user-id');
 ```
 
-## 🔧 Cấu hình
+## 🔧 Configuration
 
 ### Environment Variables
 
-Tạo file `.env.local`:
+Create `.env.local` file:
 
 ```env
 NEXT_PUBLIC_API_URL=https://your-api-url.com
@@ -96,15 +96,15 @@ NEXT_PUBLIC_API_URL=https://your-api-url.com
 
 ### Alias Paths
 
-Đã cấu hình sẵn các alias:
+Pre-configured aliases:
 
 - `@/*` - Root directory
 - `@components/*` - UI components
 - `@services/*` - API services
 - `@hooks/*` - React Query hooks
-- `@lib/*` - Utilities và configs
+- `@lib/*` - Utilities and configs
 
-## 📝 Features đã setup
+## 📝 Features Setup
 
 ### ✅ Axios Configuration
 
@@ -146,25 +146,25 @@ NEXT_PUBLIC_API_URL=https://your-api-url.com
 
 ## 🎯 Next Steps
 
-1. **Cập nhật API URL** trong `.env.local`
-2. **Tùy chỉnh API endpoints** trong services
-3. **Thêm validation** cho forms
+1. **Update API URL** in `.env.local`
+2. **Customize API endpoints** in services
+3. **Add validation** for forms
 4. **Implement error boundaries**
-5. **Add loading states** cho components
+5. **Add loading states** for components
 6. **Setup protected routes**
 
 ## 🔍 Testing
 
-Chạy development server:
+Run development server:
 
 ```bash
 npm run dev
 ```
 
-Truy cập `http://localhost:3000` để xem demo:
+Visit `http://localhost:3000` to see demos:
 
 - **Authentication Demo**: Test login/logout functionality
-- **User Management Demo**: Test CRUD operations và user search
+- **User Management Demo**: Test CRUD operations and user search
 
 ## 📚 Resources
 

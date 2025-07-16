@@ -1,6 +1,6 @@
 import apiClient from './axios';
 
-// Types cho API response
+// Types for API response
 export interface ApiResponse<T = unknown> {
   data: T;
   message?: string;

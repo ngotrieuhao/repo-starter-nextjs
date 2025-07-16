@@ -15,7 +15,7 @@ export const useAuth = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  // Query: Lấy thông tin user hiện tại
+  // Query: Get current user info
   const {
     data: currentUser,
     isLoading: isLoadingUser,
@@ -30,15 +30,15 @@ export const useAuth = () => {
       return response.data.user;
     },
     retry: false,
-    staleTime: 5 * 60 * 1000, // 5 phút
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-  // Mutation: Đăng nhập
+  // Mutation: Login
   const loginMutation = useMutation({
     mutationFn: (credentials: LoginRequest) => authService.login(credentials),
     onSuccess: (response) => {
       if (response.success) {
-        // Invalidate và refetch current user
+        // Invalidate and refetch current user
         queryClient.invalidateQueries({ queryKey: authKeys.currentUser() });
         router.push('/dashboard');
       }
@@ -48,12 +48,12 @@ export const useAuth = () => {
     },
   });
 
-  // Mutation: Đăng ký
+  // Mutation: Register
   const registerMutation = useMutation({
     mutationFn: (userData: CreateUserRequest) => authService.register(userData),
     onSuccess: (response) => {
       if (response.success) {
-        // Invalidate và refetch current user
+        // Invalidate and refetch current user
         queryClient.invalidateQueries({ queryKey: authKeys.currentUser() });
         router.push('/dashboard');
       }
@@ -63,7 +63,7 @@ export const useAuth = () => {
     },
   });
 
-  // Mutation: Đăng xuất
+  // Mutation: Logout
   const logoutMutation = useMutation({
     mutationFn: () => authService.logout(),
     onSuccess: () => {

@@ -17,13 +17,13 @@ export interface AuthResponse {
 
 // Auth service
 export const authService = {
-  // Đăng nhập
+  // Login
   login: async (
     credentials: LoginRequest
   ): Promise<ApiResponse<LoginResponse>> => {
     const response = await api.post<LoginResponse>('/auth/login', credentials);
 
-    // Lưu token vào localStorage
+    // Save token to localStorage
     if (response.success && response.data.token) {
       localStorage.setItem('token', response.data.token);
     }
@@ -31,13 +31,13 @@ export const authService = {
     return response;
   },
 
-  // Đăng ký
+  // Register
   register: async (
     userData: CreateUserRequest
   ): Promise<ApiResponse<LoginResponse>> => {
     const response = await api.post<LoginResponse>('/auth/register', userData);
 
-    // Lưu token vào localStorage
+    // Save token to localStorage
     if (response.success && response.data.token) {
       localStorage.setItem('token', response.data.token);
     }
@@ -45,21 +45,21 @@ export const authService = {
     return response;
   },
 
-  // Đăng xuất
+  // Logout
   logout: async (): Promise<ApiResponse<null>> => {
     try {
       await api.post<null>('/auth/logout');
     } catch (error) {
       // Ignore errors on logout
     } finally {
-      // Xóa token khỏi localStorage
+      // Remove token from localStorage
       localStorage.removeItem('token');
     }
 
     return { success: true, data: null };
   },
 
-  // Lấy thông tin user hiện tại
+  // Get current user info
   getCurrentUser: async (): Promise<ApiResponse<AuthResponse>> => {
     return api.get<AuthResponse>('/auth/me');
   },
@@ -75,7 +75,7 @@ export const authService = {
     return response;
   },
 
-  // Kiểm tra token có hợp lệ không
+  // Check if token is valid
   validateToken: async (): Promise<boolean> => {
     try {
       const response = await api.get<AuthResponse>('/auth/validate');

@@ -3,19 +3,19 @@ import { QueryClient } from '@tanstack/react-query';
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // Thời gian cache mặc định: 5 phút
+      // Default cache time: 5 minutes
       staleTime: 5 * 60 * 1000,
-      // Thời gian cache tối đa: 10 phút
+      // Maximum cache time: 10 minutes
       gcTime: 10 * 60 * 1000,
-      // Số lần retry mặc định
+      // Default retry count
       retry: 1,
-      // Refetch khi window focus
+      // Refetch on window focus
       refetchOnWindowFocus: false,
-      // Refetch khi reconnect
+      // Refetch on reconnect
       refetchOnReconnect: true,
     },
     mutations: {
-      // Số lần retry cho mutations
+      // Retry count for mutations
       retry: 1,
     },
   },

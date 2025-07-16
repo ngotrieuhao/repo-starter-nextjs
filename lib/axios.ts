@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Tạo instance axios với cấu hình mặc định
+// Create axios instance with default configuration
 const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'https://api.example.com',
   timeout: 10000,
@@ -12,7 +12,7 @@ const apiClient = axios.create({
 // Request interceptor
 apiClient.interceptors.request.use(
   (config) => {
-    // Thêm token vào header nếu có
+    // Add token to header if available
     const token =
       typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     if (token) {
@@ -31,9 +31,9 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error) => {
-    // Xử lý lỗi chung
+    // Handle common errors
     if (error.response?.status === 401) {
-      // Token hết hạn, redirect về login
+      // Token expired, redirect to login
       if (typeof window !== 'undefined') {
         localStorage.removeItem('token');
         window.location.href = '/login';
